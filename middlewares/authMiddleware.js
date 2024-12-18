@@ -11,6 +11,7 @@ const authenticateToken = (req, res, next) => {
     req.user = user;
     next();
   } catch (err) {
+    console.error('Token verification failed:', err);
     res.sendStatus(403);
   }
 };
