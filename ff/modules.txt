@@ -1,0 +1,65 @@
+1. equipment
+
+- id
+- name
+- inventory_number
+- serial_number
+- mac_address
+- status
+- created_at
+
+2. users
+
+- id
+- username
+- password
+- role
+- status
+- state
+- created_at
+
+3. position
+
+- id
+- name
+- created_at
+
+4. support_employee
+
+- id
+- fullname
+- shortname
+- created_at
+
+5. employee
+
+- id
+- fullname
+- shortname
+- subdivision
+- department
+- position_id
+- passport_serial_number
+- passport_given_date
+- passport_given_by
+- created_at
+
+6. attachment
+
+- id 
+- file_name
+- file_path
+- size
+- created_at
+
+7. equipment_history
+
+- id
+- equipment_id
+- employee_id
+- support_employee_id
+- users_id
+- attachment_id
+- description
+- action
+- created_at
