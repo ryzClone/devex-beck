@@ -22,22 +22,28 @@ const getAllSupportEmployeesService = async ({ page, size }) => {
 };
 
 // --- Service: Create ---
-const createSupportEmployeeService = async (fullname) => {
+const createSupportEmployeeService = async ({ fullname, shortname }) => {
   try {
+    // Mavjudligini tekshirish
     const existing = await SupportEmployee.findOne({ where: { fullname } });
 
     if (existing) {
-      const msg = `В базе уже существует сотрудник поддержки '${fullname}'`;
+      const msg = `В базе уже существует сотрудник поддержки с ФИО '${fullname}'`;
       logger.warn(`[SupportEmployeeService] ⚠️ ${msg}`);
       return { success: false, message: msg };
     }
 
-    const newSupportEmployee = await SupportEmployee.create({ fullname });
+    // Yangi qo‘shish
+    const newSupportEmployee = await SupportEmployee.create({
+      fullname,
+      shortname,
+    });
 
     logger.info(
-      `[SupportEmployeeService] ✅ Создано: ${JSON.stringify(newSupportEmployee)}`
+      `[SupportEmployeeService] ✅ Создан: ${JSON.stringify(newSupportEmployee)}`
     );
-    return { success: true, supportEmployee: newSupportEmployee };
+
+    return { success: true, data: newSupportEmployee };
   } catch (error) {
     logger.error(`[SupportEmployeeService] ❌ Ошибка: ${error.message}`, {
       stack: error.stack,
