@@ -12,6 +12,9 @@ const { sendPdf, updatePdf, updatePdfTransfer } = require("../controllers/PdfCon
 const { getDashboardAnalytics, AdminpanelExportToExcel, adminpanelExportToExcel } = require("../controllers/AdminPanelController");
 const { getAllPositions, createPosition, updatePosition, deletePosition } = require("../controllers/PositionController");
 const { getAllSupportEmployees, createSupportEmployee, updateSupportEmployee, deleteSupportEmployee } = require("../controllers/EmployeeSupportController");
+const { getAllOperatingSystems, createOperatingSystem, updateOperatingSystem, deleteOperatingSystem } = require("../controllers/OperatingSystemController");
+const InstalledSoftwareController = require("../controllers/InstalledSoftwareController");
+const { getAllInstalledSoftwareService } = require("../services/InstalledSoftwareService");
 
 const router = express.Router();
 // Users
@@ -63,14 +66,26 @@ router.post("/export-history/filtered/:table", exportHistoryToExcelFromRecords);
 // AdminPanel
 router.get("/admin-panel/stats", authenticateToken , getDashboardAnalytics );
 router.post("/adminpanel-export", authenticateToken , adminpanelExportToExcel );
-// Position
+// --- Routes for Positon ---
 router.get("/viewposition", authenticateToken , getAllPositions);
 router.post("/createposition", authenticateToken , createPosition);
 router.put("/updateposition/:id", authenticateToken , updatePosition);
 router.delete("/deleteposition/:id", authenticateToken , deletePosition);
-//Support Employee
+// --- Routes for SupportEmployee ---
 router.get("/viewemployeesupport", authenticateToken , getAllSupportEmployees);
 router.post("/createemployeesupport", authenticateToken , createSupportEmployee);
 router.put("/updateemployeesupport/:id", authenticateToken , updateSupportEmployee);
 router.delete("/deleteemployeesupport/:id", authenticateToken , deleteSupportEmployee);
+// --- Routes for OperatingSystem ---
+router.get("/viewoperatingsystem", authenticateToken, getAllOperatingSystems);
+router.post("/createoperatingsystem", authenticateToken, createOperatingSystem);
+router.put("/updateoperatingsystem/:id", authenticateToken, updateOperatingSystem);
+router.delete("/deleteoperatingsystem/:id", authenticateToken, deleteOperatingSystem);
+
+// --- Routes for InstalledSoftware ---
+router.get("/viewinstalledsoftware", authenticateToken, InstalledSoftwareController.getAllInstalledSoftware);
+router.get("/viewinstalledsoftware/:id", authenticateToken, InstalledSoftwareController.getByIdInstalledSoftware);
+router.post("/createinstalledsoftware", authenticateToken, InstalledSoftwareController.createInstalledSoftware);
+router.put("/updateinstalledsoftware/:id", authenticateToken, InstalledSoftwareController.updateInstalledSoftware);
+router.delete("/deleteinstalledsoftware/:id", authenticateToken, InstalledSoftwareController.deleteInstalledSoftware);
 module.exports = router;

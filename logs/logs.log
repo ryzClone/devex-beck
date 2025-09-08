@@ -1,85 +1,115 @@
-[2025-08-29 10:02:19] [INFO] 🚀 Server is running on port 5000
+[2025-09-07 19:21:02] [INFO] 🚀 Server is running on port 5000
 
-[2025-08-29 10:03:44] [INFO] Request: GET /api/viewemployeesupport?page=1&size=20
+[2025-09-07 19:21:04] [INFO] Request: GET /api/viewoperatingsystem?page=1&size=1000
 body: {}
 user: "anon"
 
-[2025-08-29 10:03:56] [INFO] Request: POST /api/createemployeesupport
+[2025-09-07 19:21:04] [INFO] [OperatingSystemService] ✅ Получены ОС. count=6, page=1, size=1000
+
+[2025-09-07 19:21:10] [INFO] Request: POST /api/createinstalledsoftware
 body: {
-  "fullname": "jumayev ozodbek",
-  "shortname": "o.jumayev"
+  "name": "asdffsdad",
+  "operating_system_id": 9
 }
 user: "anon"
 
-[2025-08-29 10:03:56] [INFO] [SupportEmployeeService] ✅ Создан: {"created_at":"2025-08-29T00:03:56.159Z","id":2,"fullname":"jumayev ozodbek","shortname":"o.jumayev"}
+[2025-09-07 19:21:10] [INFO] [InstalledSoftwareService] ✏️ Создание нового ПО: asdffsdad
 
-[2025-08-29 10:03:59] [INFO] Request: GET /api/viewemployeesupport?page=1&size=20
+[2025-09-07 19:21:10] [WARN] [InstalledSoftwareService] ⚠️ Нельзя создать ПО без связанной ОС
+
+[2025-09-07 19:21:13] [INFO] Request: GET /api/viewinstalledsoftware?page=1&size=20
 body: {}
 user: "anon"
 
-[2025-08-29 10:05:08] [INFO] Request: GET /api/admin-panel/stats?interval=daily
+[2025-09-07 19:21:13] [INFO] [InstalledSoftwareService] 🔍 Получение всех ПО. page=1, size=20
+
+[2025-09-07 19:21:13] [INFO] [InstalledSoftwareService] ✅ Получено ПО. count=7, page=1, size=20
+
+[2025-09-07 19:23:49] [INFO] Request: GET /api/viewoperatingsystem?page=1&size=1000
 body: {}
 user: "anon"
 
-[2025-08-29 10:05:08] [INFO] [DashboardAnalytics] So‘rov qabul qilindi. interval=daily
+[2025-09-07 19:23:50] [INFO] [OperatingSystemService] ✅ Получены ОС. count=6, page=1, size=1000
 
-[2025-08-29 10:05:08] [INFO] Функция getDashboardStats вызвана с параметром interval: daily
-
-[2025-08-29 10:05:08] [INFO] Начинается подсчёт общего количества сотрудников, поддерживающих сотрудников, должностей, ОС и ПО
-
-[2025-08-29 10:05:08] [INFO] Подсчёт завершён: сотрудники=0, поддержка=1, должности=3, ОС=1, ПО=2
-
-[2025-08-29 10:05:08] [INFO] Получение данных для графиков роста (employees, support, positions, os, software)
-
-[2025-08-29 10:05:08] [INFO] Данные для графиков получены: employees=0, support=0, positions=0, ОС=0, ПО=0
-
-[2025-08-29 10:05:08] [INFO] Графики роста успешно построены
-
-[2025-08-29 10:05:08] [INFO] Получение последних 30 записей для таблиц (employees, support, positions, os, software)
-
-[2025-08-29 10:05:08] [INFO] Табличные данные получены: employees=0, support=1, positions=3, ОС=1, ПО=2
-
-[2025-08-29 10:05:08] [INFO] [DashboardAnalytics] ✅ Statistika olindi. Result: {"totalEmployees":0,"totalSupportEmployees":1,"totalPositions":3,"totalOperatingSystems":1,"totalInstalledSoftware":2,"employeeGrowthChart":[{"label":"29-08","count":0}],"supportGrowthChart":[{"label":"29-08","count":0}],"positionGrowthChart":[{"label":"29-08","count":0}],"osGrowthChart":[{"label":"29-08","count":0}],"softwareGrowthChart":[{"label":"29-08","count":0}],"employeeTable":[],"supportTable":[{"id":2,"fullname":"jumayev ozodbek","shortname":"o.jumayev","created_at":"2025-08-29T00:03:56.159Z"}],"positionTable":[{"id":13,"name":"asdqweasdqwe","created_at":"2025-08-27T06:21:51.248Z"},{"id":12,"name":"boshliqe","created_at":"2025-08-25T00:11:40.819Z"},{"id":11,"name":"asd","created_at":"2025-08-24T03:36:06.806Z"}],"osTable":[{"id":1,"name":"Windows 11","created_at":"2025-08-22T09:53:25.457Z"}],"softwareTable":[{"id":1,"operating_system_id":1,"name":"Adobe Photoshop","created_at":"2025-08-22T09:53:32.079Z"},{"id":2,"operating_system_id":1,"name":"Visual Studio Code","created_at":"2025-08-22T09:53:32.079Z"}]}
-
-[2025-08-29 10:05:10] [INFO] Request: GET /api/viewemployee?page=1&size=20
+[2025-09-07 19:23:50] [INFO] Request: GET /api/viewoperatingsystem?page=1&size=1000
 body: {}
 user: "anon"
 
-[2025-08-29 10:05:10] [INFO] Request: GET /api/viewposition?page=1&size=20
-body: {}
-user: "anon"
+[2025-09-07 19:23:50] [INFO] [OperatingSystemService] ✅ Получены ОС. count=6, page=1, size=1000
 
-[2025-08-29 10:05:12] [INFO] Request: GET /api/viewemployeesupport?page=1&size=20
-body: {}
-user: "anon"
-
-[2025-08-30 12:35:15] [INFO] Request: POST /api/login
+[2025-09-07 19:23:53] [INFO] Request: POST /api/createinstalledsoftware
 body: {
-  "username": "admin",
-  "password": "123"
+  "name": "asdfffsa",
+  "operating_system_ids": [
+    10
+  ]
 }
 user: "anon"
 
-[2025-08-30 12:35:15] [INFO] Попытка входа в систему
-username: "admin"
+[2025-09-07 19:23:53] [INFO] [InstalledSoftwareService] ✏️ Создание нового ПО: asdfffsa
 
-[2025-08-30 12:35:16] [INFO] Успешный вход
-username: "admin"
+[2025-09-07 19:23:53] [INFO] [InstalledSoftwareService] ✅ ПО создано с ID=15 и связями с ОС: 10
 
-[2025-08-30 12:36:26] [INFO] Request: POST /api/login
+[2025-09-07 19:23:53] [INFO] [InstalledSoftwareService] 🔍 Получение ПО с ID=15
+
+[2025-09-07 19:23:53] [INFO] [InstalledSoftwareService] ✅ Найдено ПО с ID=15
+
+[2025-09-07 19:23:56] [INFO] Request: GET /api/viewinstalledsoftware?page=1&size=20
+body: {}
+user: "anon"
+
+[2025-09-07 19:23:56] [INFO] [InstalledSoftwareService] 🔍 Получение всех ПО. page=1, size=20
+
+[2025-09-07 19:23:56] [INFO] [InstalledSoftwareService] ✅ Получено ПО. count=8, page=1, size=20
+
+[2025-09-07 19:23:59] [INFO] Request: GET /api/viewoperatingsystem?page=1&size=1000
+body: {}
+user: "anon"
+
+[2025-09-07 19:23:59] [INFO] [OperatingSystemService] ✅ Получены ОС. count=7, page=1, size=1000
+
+[2025-09-07 19:24:08] [INFO] Request: POST /api/createinstalledsoftware
 body: {
-  "username": "admin",
-  "password": "123"
+  "name": "gdfghdffsafdsd",
+  "operating_system_ids": [
+    8
+  ]
 }
 user: "anon"
 
-[2025-08-30 12:36:26] [INFO] Попытка входа в систему
-username: "admin"
+[2025-09-07 19:24:08] [INFO] [InstalledSoftwareService] ✏️ Создание нового ПО: gdfghdffsafdsd
 
-[2025-08-30 12:36:26] [INFO] Успешный вход
-username: "admin"
+[2025-09-07 19:24:08] [INFO] [InstalledSoftwareService] ✅ ПО создано с ID=16 и связями с ОС: 8
 
-[2025-08-30 12:36:27] [INFO] Request: GET /api/readacception?page=1&size=20&search=
+[2025-09-07 19:24:08] [INFO] [InstalledSoftwareService] 🔍 Получение ПО с ID=16
+
+[2025-09-07 19:24:08] [INFO] [InstalledSoftwareService] ✅ Найдено ПО с ID=16
+
+[2025-09-07 19:24:11] [INFO] Request: GET /api/viewinstalledsoftware?page=1&size=20
 body: {}
 user: "anon"
+
+[2025-09-07 19:24:11] [INFO] [InstalledSoftwareService] 🔍 Получение всех ПО. page=1, size=20
+
+[2025-09-07 19:24:11] [INFO] [InstalledSoftwareService] ✅ Получено ПО. count=9, page=1, size=20
+
+[2025-09-07 19:24:18] [INFO] Request: GET /api/viewoperatingsystem?page=1&size=20
+body: {}
+user: "anon"
+
+[2025-09-07 19:24:18] [INFO] [OperatingSystemService] ✅ Получены ОС. count=8, page=1, size=20
+
+[2025-09-07 19:24:27] [INFO] Request: GET /api/viewinstalledsoftware?page=1&size=20
+body: {}
+user: "anon"
+
+[2025-09-07 19:24:27] [INFO] [InstalledSoftwareService] 🔍 Получение всех ПО. page=1, size=20
+
+[2025-09-07 19:24:27] [INFO] [InstalledSoftwareService] ✅ Получено ПО. count=9, page=1, size=20
+
+[2025-09-07 19:24:30] [INFO] Request: GET /api/viewoperatingsystem?page=1&size=20
+body: {}
+user: "anon"
+
+[2025-09-07 19:24:30] [INFO] [OperatingSystemService] ✅ Получены ОС. count=8, page=1, size=20
 

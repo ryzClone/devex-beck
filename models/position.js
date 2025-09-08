@@ -1,83 +1,100 @@
 module.exports = (sequelize, Sequelize) => {
   const { DataTypes } = Sequelize;
 
-  // 1. Position
-  const Position = sequelize.define("Position", {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  // 1️⃣ Position modeli
+  const Position = sequelize.define(
+    "Position",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      created_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-  }, {
-    tableName: "position",
-    timestamps: false, // faqat created_at ishlatiladi
-  });
+    {
+      tableName: "position",
+      timestamps: false,
+    }
+  );
 
-  // 2. OperatingSystem
-  const OperatingSystem = sequelize.define("OperatingSystem", {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  // 2️⃣ OperatingSystem modeli
+  const OperatingSystem = sequelize.define(
+    "OperatingSystem",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      created_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-  }, {
-    tableName: "operating_systems",
-    timestamps: false,
-  });
+    {
+      tableName: "operating_systems",
+      timestamps: false,
+    }
+  );
 
-  // 3. InstalledSoftware
-  const InstalledSoftware = sequelize.define("InstalledSoftware", {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  // 3️⃣ InstalledSoftware modeli
+  const InstalledSoftware = sequelize.define(
+    "InstalledSoftware",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      created_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
     },
-    operating_system_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-  }, {
-    tableName: "installed_software",
-    timestamps: false,
-  });
+    {
+      tableName: "installed_software",
+      timestamps: false,
+    }
+  );
 
-  // Aloqalar
-  OperatingSystem.hasMany(InstalledSoftware, {
-    foreignKey: "operating_system_id",
-    onDelete: "CASCADE",
-  });
+InstalledSoftware.belongsToMany(OperatingSystem, {
+  through: "os_installed_software",
+  foreignKey: "software_id",
+  otherKey: "operating_system_id",
+  as: "operating_systems",
+  timestamps: false,
+});
 
-  InstalledSoftware.belongsTo(OperatingSystem, {
-    foreignKey: "operating_system_id",
-  });
+OperatingSystem.belongsToMany(InstalledSoftware, {
+  through: "os_installed_software",
+  foreignKey: "operating_system_id",
+  otherKey: "software_id",
+  as: "softwares",
+  timestamps: false,
+});
+
+
+
 
   return {
     Position,
