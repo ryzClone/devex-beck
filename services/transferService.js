@@ -1,57 +1,51 @@
 // transferService.js
-const { Texnika, TexHistory , Sequelize , sequelize, Position} = require('../models');
+const { Equipment, TexHistory , Sequelize , sequelize, Position} = require('../models');
 const { Op } = require("sequelize");
 const path = require('path');
 const fs = require('fs');
 
-const readAcception = async (page, size, search) => {
+const readAcception = async (page = 1, size = 10, search = "") => {
   const offset = (page - 1) * size;
 
   const where = {
-    status: "В рабочем состоянии",
-    section: "acception"
+    status: "В рабочем состоянии", // faqat ishchi texnika
   };
 
   if (search) {
-    where[Sequelize.Op.and] = [
-      {
-        [Sequelize.Op.or]: [
-          { equipment_name: { [Sequelize.Op.iLike]: `%${search}%` } },
-          { inventory_number: { [Sequelize.Op.iLike]: `%${search}%` } },
-          { serial_number: { [Sequelize.Op.iLike]: `%${search}%` } },
-        ]
-      }
+    where[Op.or] = [
+      { name: { [Op.iLike]: `%${search}%` } },
+      { inventory_number: { [Op.iLike]: `%${search}%` } },
+      { serial_number: { [Op.iLike]: `%${search}%` } },
+      { mac_address: { [Op.iLike]: `%${search}%` } },
     ];
   }
 
   try {
-    const { rows: texnikaData, count: total } = await Texnika.findAndCountAll({
+    const { rows: equipmentData, count: total } = await Equipment.findAndCountAll({
       attributes: [
-        'id',
-        'department',
-        'equipment_name',
-        'inventory_number',
-        'serial_number',
-        'mac',
-        'document_file',
-        [Sequelize.fn('to_char', Sequelize.col('data'), 'DD-MM-YYYY HH24:MI:SS'), 'data']
+        "id",
+        "name",
+        "inventory_number",
+        "serial_number",
+        "mac_address",
+        "status",
+        [Sequelize.fn("to_char", Sequelize.col("created_at"), "DD-MM-YYYY HH24:MI:SS"), "created_at"],
       ],
       where,
+      order: [["id", "DESC"]],
       limit: size,
-      offset
+      offset,
     });
 
     const positionData = await Position.findAll();
 
-    // Ikkala ma'lumotni alohida qaytarish
     return {
-      data: texnikaData, // Texnika ma'lumotlari
-      total, // Texnika yozuvlarining umumiy soni
-      positionTable: positionData // Position jadvalidan olingan ma'lumotlar
+      data: equipmentData,
+      total,
+      positionTable: positionData,
     };
-    
   } catch (error) {
-    console.error('Error fetching data:', error); // Log errors if any
+    console.error("❌ Error in readAcception Service:", error.message);
     throw error;
   }
 };
@@ -104,7 +98,7 @@ const getTransfers = async ({ page, size, search }) => {
     const positionData = await Position.findAll();
 
     // Return the results along with the position data
-    return { data, total, positionTable: positionData };
+    return {total, positionTable: positionData };
   } catch (error) {
     console.error("Error fetching transfer records:", error);
     throw error;

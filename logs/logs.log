@@ -1,115 +1,135 @@
-[2025-09-07 19:21:02] [INFO] 🚀 Server is running on port 5000
+[2025-09-21 19:33:15] [INFO] 🚀 Server is running on port 5000
 
-[2025-09-07 19:21:04] [INFO] Request: GET /api/viewoperatingsystem?page=1&size=1000
-body: {}
-user: "anon"
-
-[2025-09-07 19:21:04] [INFO] [OperatingSystemService] ✅ Получены ОС. count=6, page=1, size=1000
-
-[2025-09-07 19:21:10] [INFO] Request: POST /api/createinstalledsoftware
+[2025-09-21 19:33:31] [INFO] Request: POST /api/updatepdf
 body: {
-  "name": "asdffsdad",
-  "operating_system_id": 9
+  "full_name": "Маликов Достонбек Рустамович ",
+  "shortname": "Маликов.Д.Р",
+  "position": "boshliqe",
+  "order_name": "Главный Специалист ",
+  "employee_podrazdelenie": "Банк передает Отделу мониторинга и проведения взаиморасчетов по национальным платежным системам ",
+  "passport_serial_number": "AB 6562571",
+  "passport_issue_date": "2025-09-22",
+  "issued_by": "SAMARKAND VILOYATI IIV",
+  "equipments": [
+    {
+      "equipment_name": "Texnika Nomi 12123",
+      "inventory_number": "1234",
+      "serial_number": "134",
+      "id": 3
+    }
+  ],
+  "softwares": [
+    {
+      "id": 15,
+      "name": "asdfffsa"
+    },
+    {
+      "id": 10,
+      "name": "VS Code"
+    },
+    {
+      "id": 11,
+      "name": "postman"
+    },
+    {
+      "id": 12,
+      "name": "telegram"
+    },
+    {
+      "id": 13,
+      "name": "pg admin"
+    }
+  ],
+  "executor_fio": [
+    {
+      "id": 2,
+      "fullname": "jumayev ozodbek",
+      "shortname": "o.jumayev",
+      "position": "—"
+    }
+  ],
+  "system": {
+    "id": 10,
+    "name": "linux"
+  }
 }
 user: "anon"
 
-[2025-09-07 19:21:10] [INFO] [InstalledSoftwareService] ✏️ Создание нового ПО: asdffsdad
+[2025-09-21 19:33:31] [INFO] [updatePdf] Получены данные для генерации PDF.
 
-[2025-09-07 19:21:10] [WARN] [InstalledSoftwareService] ⚠️ Нельзя создать ПО без связанной ОС
+[2025-09-21 19:33:31] [INFO] [generatePdf] Генерация PDF началась...
 
-[2025-09-07 19:21:13] [INFO] Request: GET /api/viewinstalledsoftware?page=1&size=20
-body: {}
-user: "anon"
+[2025-09-21 19:33:31] [INFO] [generatePdf] PDF успешно создан: E:\WORK\Realniy proect\ImomTogo rabota\server\public\files\output.pdf
 
-[2025-09-07 19:21:13] [INFO] [InstalledSoftwareService] 🔍 Получение всех ПО. page=1, size=20
+[2025-09-21 19:33:31] [INFO] [updatePdf] PDF успешно создан и отправлен пользователю.
 
-[2025-09-07 19:21:13] [INFO] [InstalledSoftwareService] ✅ Получено ПО. count=7, page=1, size=20
-
-[2025-09-07 19:23:49] [INFO] Request: GET /api/viewoperatingsystem?page=1&size=1000
-body: {}
-user: "anon"
-
-[2025-09-07 19:23:50] [INFO] [OperatingSystemService] ✅ Получены ОС. count=6, page=1, size=1000
-
-[2025-09-07 19:23:50] [INFO] Request: GET /api/viewoperatingsystem?page=1&size=1000
-body: {}
-user: "anon"
-
-[2025-09-07 19:23:50] [INFO] [OperatingSystemService] ✅ Получены ОС. count=6, page=1, size=1000
-
-[2025-09-07 19:23:53] [INFO] Request: POST /api/createinstalledsoftware
+[2025-09-21 19:33:31] [INFO] Request: POST /api/sendpdf?timestamp=1758465211772
 body: {
-  "name": "asdfffsa",
-  "operating_system_ids": [
-    10
-  ]
+  "fileName": "output.pdf"
 }
 user: "anon"
 
-[2025-09-07 19:23:53] [INFO] [InstalledSoftwareService] ✏️ Создание нового ПО: asdfffsa
+[2025-09-21 19:33:31] [INFO] [sendPdf] Kiruvchi so‘rov (req.body):
+fileName: "output.pdf"
 
-[2025-09-07 19:23:53] [INFO] [InstalledSoftwareService] ✅ ПО создано с ID=15 и связями с ОС: 10
+[2025-09-21 19:33:31] [INFO] [generatePdfUrl] Ссылка на PDF успешно сгенерирована:
 
-[2025-09-07 19:23:53] [INFO] [InstalledSoftwareService] 🔍 Получение ПО с ID=15
+[2025-09-21 19:33:31] [INFO] [sendPdf] Ссылка на PDF успешно сгенерирована: http://localhost:5000/files/output.pdf
 
-[2025-09-07 19:23:53] [INFO] [InstalledSoftwareService] ✅ Найдено ПО с ID=15
+[2025-09-21 19:33:31] [INFO] [sendPdf] Yuborilayotgan javob (res.json):
+pdfUrl: "http://localhost:5000/files/output.pdf"
 
-[2025-09-07 19:23:56] [INFO] Request: GET /api/viewinstalledsoftware?page=1&size=20
-body: {}
-user: "anon"
-
-[2025-09-07 19:23:56] [INFO] [InstalledSoftwareService] 🔍 Получение всех ПО. page=1, size=20
-
-[2025-09-07 19:23:56] [INFO] [InstalledSoftwareService] ✅ Получено ПО. count=8, page=1, size=20
-
-[2025-09-07 19:23:59] [INFO] Request: GET /api/viewoperatingsystem?page=1&size=1000
-body: {}
-user: "anon"
-
-[2025-09-07 19:23:59] [INFO] [OperatingSystemService] ✅ Получены ОС. count=7, page=1, size=1000
-
-[2025-09-07 19:24:08] [INFO] Request: POST /api/createinstalledsoftware
+[2025-09-21 19:43:37] [INFO] Request: POST /api/sendpdf?timestamp=1758465817189
 body: {
-  "name": "gdfghdffsafdsd",
-  "operating_system_ids": [
-    8
-  ]
+  "fileName": "output.pdf"
 }
 user: "anon"
 
-[2025-09-07 19:24:08] [INFO] [InstalledSoftwareService] ✏️ Создание нового ПО: gdfghdffsafdsd
+[2025-09-21 19:43:37] [INFO] [sendPdf] Kiruvchi so‘rov (req.body):
+fileName: "output.pdf"
 
-[2025-09-07 19:24:08] [INFO] [InstalledSoftwareService] ✅ ПО создано с ID=16 и связями с ОС: 8
+[2025-09-21 19:43:37] [INFO] [generatePdfUrl] Ссылка на PDF успешно сгенерирована:
 
-[2025-09-07 19:24:08] [INFO] [InstalledSoftwareService] 🔍 Получение ПО с ID=16
+[2025-09-21 19:43:37] [INFO] [sendPdf] Ссылка на PDF успешно сгенерирована: http://localhost:5000/files/output.pdf
 
-[2025-09-07 19:24:08] [INFO] [InstalledSoftwareService] ✅ Найдено ПО с ID=16
+[2025-09-21 19:43:37] [INFO] [sendPdf] Yuborilayotgan javob (res.json):
+pdfUrl: "http://localhost:5000/files/output.pdf"
 
-[2025-09-07 19:24:11] [INFO] Request: GET /api/viewinstalledsoftware?page=1&size=20
+[2025-09-21 19:43:37] [INFO] Request: GET /api/viewemployee
 body: {}
 user: "anon"
 
-[2025-09-07 19:24:11] [INFO] [InstalledSoftwareService] 🔍 Получение всех ПО. page=1, size=20
-
-[2025-09-07 19:24:11] [INFO] [InstalledSoftwareService] ✅ Получено ПО. count=9, page=1, size=20
-
-[2025-09-07 19:24:18] [INFO] Request: GET /api/viewoperatingsystem?page=1&size=20
+[2025-09-21 19:43:37] [INFO] Request: GET /api/viewemployeesupport?page=1&size=10
 body: {}
 user: "anon"
 
-[2025-09-07 19:24:18] [INFO] [OperatingSystemService] ✅ Получены ОС. count=8, page=1, size=20
-
-[2025-09-07 19:24:27] [INFO] Request: GET /api/viewinstalledsoftware?page=1&size=20
+[2025-09-21 19:43:37] [INFO] Request: GET /api/viewoperatingsystem?page=1&size=10
 body: {}
 user: "anon"
 
-[2025-09-07 19:24:27] [INFO] [InstalledSoftwareService] 🔍 Получение всех ПО. page=1, size=20
+[2025-09-21 19:43:37] [INFO] [OperatingSystemService] ✅ Получены ОС. count=8, page=1, size=10
 
-[2025-09-07 19:24:27] [INFO] [InstalledSoftwareService] ✅ Получено ПО. count=9, page=1, size=20
-
-[2025-09-07 19:24:30] [INFO] Request: GET /api/viewoperatingsystem?page=1&size=20
+[2025-09-21 19:43:37] [INFO] Request: GET /api/viewinstalledsoftware?page=1&size=10
 body: {}
 user: "anon"
 
-[2025-09-07 19:24:30] [INFO] [OperatingSystemService] ✅ Получены ОС. count=8, page=1, size=20
+[2025-09-21 19:43:37] [INFO] [InstalledSoftwareService] 🔍 Получение всех ПО. page=1, size=10
+
+[2025-09-21 19:43:37] [INFO] [InstalledSoftwareService] ✅ Получено ПО. count=9, page=1, size=10
+
+[2025-09-21 19:43:37] [INFO] Request: POST /api/sendpdf?timestamp=1758465817711
+body: {
+  "fileName": "output.pdf"
+}
+user: "anon"
+
+[2025-09-21 19:43:37] [INFO] [sendPdf] Kiruvchi so‘rov (req.body):
+fileName: "output.pdf"
+
+[2025-09-21 19:43:37] [INFO] [generatePdfUrl] Ссылка на PDF успешно сгенерирована:
+
+[2025-09-21 19:43:37] [INFO] [sendPdf] Ссылка на PDF успешно сгенерирована: http://localhost:5000/files/output.pdf
+
+[2025-09-21 19:43:37] [INFO] [sendPdf] Yuborilayotgan javob (res.json):
+pdfUrl: "http://localhost:5000/files/output.pdf"
 

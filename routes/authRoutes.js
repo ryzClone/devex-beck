@@ -15,6 +15,7 @@ const { getAllSupportEmployees, createSupportEmployee, updateSupportEmployee, de
 const { getAllOperatingSystems, createOperatingSystem, updateOperatingSystem, deleteOperatingSystem } = require("../controllers/OperatingSystemController");
 const InstalledSoftwareController = require("../controllers/InstalledSoftwareController");
 const { getAllInstalledSoftwareService } = require("../services/InstalledSoftwareService");
+const { getAllEmployees, createEmployee, updateEmployee, deleteEmployee } = require("../controllers/EmployeeController");
 
 const router = express.Router();
 // Users
@@ -71,6 +72,11 @@ router.get("/viewposition", authenticateToken , getAllPositions);
 router.post("/createposition", authenticateToken , createPosition);
 router.put("/updateposition/:id", authenticateToken , updatePosition);
 router.delete("/deleteposition/:id", authenticateToken , deletePosition);
+// --- Routes for Employee ---
+router.get("/viewemployee", authenticateToken, getAllEmployees);
+router.post("/createemployee", authenticateToken, createEmployee);
+router.put("/updateemployee/:id", authenticateToken, updateEmployee);
+router.delete("/deleteemployee/:id", authenticateToken, deleteEmployee);
 // --- Routes for SupportEmployee ---
 router.get("/viewemployeesupport", authenticateToken , getAllSupportEmployees);
 router.post("/createemployeesupport", authenticateToken , createSupportEmployee);

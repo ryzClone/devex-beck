@@ -6,21 +6,26 @@ const { generateToken } = require("../config/jwt");
 const readAcception = async (req, res) => {
   const { page = 1, size = 10, search = "" } = req.query;
 
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ message: "Token required" });
+  }
+
+  let user;
   try {
-    const authHeader = req.headers["authorization"];
-    const token = authHeader && authHeader.split(" ")[1];
+    user = generateToken(token);
+  } catch (err) {
+    return res.status(403).json({ message: "Invalid token" });
+  }
 
-    if (!token) {
-      return res.status(401).json({ message: "Token required" });
-    }
-
-    try {
-      user = generateToken(token);
-    } catch (err) {
-      return res.status(403).json({ message: "Invalid token" });
-    }
-
-    const { data, total , positionTable } = await transferService.readAcception(page, size, search);
+  try {
+    const { data, total, positionTable } = await transferService.readAcception(
+      Number(page),
+      Number(size),
+      search
+    );
 
     res.status(200).json({
       message: "Data retrieved successfully",
@@ -28,9 +33,8 @@ const readAcception = async (req, res) => {
       total,
       positionTable,
     });
-  } catch (err) {
-    console.error("Server error:", err);
-    res.status(500).json({ message: "Server error", error: err.message });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 };
 
